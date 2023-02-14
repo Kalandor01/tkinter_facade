@@ -1,16 +1,18 @@
 """
 This module provides proxies for classes and methods in tkinter.
 """
-__version__ = "0.2"
+__version__ = "0.2.1"
 
 import tkinter as tk
 
 
 if __name__ == "__main__":
     from utils import get_children_recursive
+    from base_classes import Misc, BaseWidget, Widget, Tk
     from button import Button, Action_button
 else:
     from tkinter_proxy.utils import get_children_recursive
+    from tkinter_proxy.base_classes import Misc, BaseWidget, Widget, Tk
     from tkinter_proxy.button import Button, Action_button
 
 
@@ -49,6 +51,18 @@ if __name__ == "__main__":
             print(x)
 
 
+    def get_config_values(item:tk.Misc):
+        for key in item.configure():
+            print(end=f"{key}: ")
+            value = item.configure(key)
+            for i in value:
+                if type(i) == str:
+                    print(end=f"{i} ")
+                else:
+                    print(end=f"{type(i)}:{i} ")
+            print()
+
+
     # draw_board()
     # window.children
     # chch = get_children_recursive(window)
@@ -70,17 +84,17 @@ if __name__ == "__main__":
     window2 = tk.Tk()
     window2.geometry("200x200")
 
-    # bt = Button(window2, "lol", 15, 12, test_click)
-    # print(bt.width)
-    # bt.width = 15
-    # print(bt.width)
-    # print(Button().configure("command"))
+    bt = Button(window2, "lol", 15, 12, test_click)
+    print(bt.width)
+    bt.width = 150
+    print(bt.width)
+    print(Button().configure("command"))
 
+    # get_config_values(tk.Widget(window2, "button"))
 
+    # row_frame = tk.Frame(window2)
+    # row_frame.pack(side="top")
+    # btn = Action_button(window2, "hey", 4646, command=test_click)
+    # btn.pack(side="left")
 
-    row_frame = tk.Frame(window2)
-    row_frame.pack(side="top")
-    btn = Action_button(window2, "hey", 4646, command=test_click)
-    btn.pack(side="left")
-
-    window2.mainloop()
+    # window2.mainloop()

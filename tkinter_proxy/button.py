@@ -1,8 +1,10 @@
 import tkinter as tk
 from typing import Callable
 
+import base_classes as bc
 
-class Button(tk.Button):
+
+class Button(tk.Button, bc.BaseWidget):
     """
     Proxy class for `tkinter.Button`.
     """
@@ -26,28 +28,12 @@ class Button(tk.Button):
         return self.configure("text")[4]
 
 
-    def _get_width(self) -> int:
-        return self.configure("width")[4]
-    
-
-    def _get_height(self) -> int:
-        return self.configure("height")[4]
-    
-
     def _get_command(self) -> Callable:
         return self.configure("command")[4]
 
 
     def _set_text(self, text:str):
         self.config(text=text)
-
-
-    def _set_width(self, width:int):
-        self.config(width=width)
-    
-
-    def _set_height(self, height:int):
-        self.config(height=height)
     
 
     def _set_command(self, command:Callable):
@@ -55,8 +41,6 @@ class Button(tk.Button):
     
 
     text:str = property(_get_text, _set_text)
-    width:int = property(_get_width, _set_width)
-    height:int = property(_get_height, _set_height)
     command:Callable = property(_get_command, _set_command)
 
 
