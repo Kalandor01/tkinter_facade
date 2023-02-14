@@ -1,43 +1,30 @@
 """
 This module provides proxies for classes and methods in tkinter.
 """
-__version__ = "0.1.1"
+__version__ = "0.2"
 
 import tkinter as tk
 
+
 if __name__ == "__main__":
-    pass
+    from utils import get_children_recursive
+    from button import Button, Action_button
 else:
-    pass
-
-
-def get_children_recursive(widget:tk.Misc, previous_widget_name:str|None=None):
-    children:dict[str, tk.Widget] = {}
-    ch = widget.children
-    if len(ch) > 0:
-        for key, chi in ch.items():
-            ch_widget_name = None
-            if previous_widget_name is not None:
-                ch_widget_name = f"{previous_widget_name}.{key}"
-                children[ch_widget_name] = chi
-            else:
-                children[key] = chi
-                ch_widget_name = key
-            children.update(get_children_recursive(chi, ch_widget_name))
-    return children
+    from tkinter_proxy.utils import get_children_recursive
+    from tkinter_proxy.button import Button, Action_button
 
 
 if __name__ == "__main__":
     move = False
     size = 3
     
-    window = tk.Tk()
-    window.title("Noughts And Crosses")
-    window.geometry("400x400")
+    # window = tk.Tk()
+    # window.title("Noughts And Crosses")
+    # window.geometry("400x400")
 
-    v = tk.StringVar()
-    tk.Label(window, textvariable=v,pady=10).pack()
-    v.set("Noughts And Crosses")
+    # v = tk.StringVar()
+    # tk.Label(window, textvariable=v,pady=10).pack()
+    # v.set("Noughts And Crosses")
 
     buttons:list[tk.Button] = []
 
@@ -62,9 +49,38 @@ if __name__ == "__main__":
             print(x)
 
 
-    draw_board()
-    window.children
-    chch = get_children_recursive(window)
-    for key, val in chch.items():
-        print(key, val)
-    window.mainloop()
+    # draw_board()
+    # window.children
+    # chch = get_children_recursive(window)
+    # for key, val in chch.items():
+    #     print(key, val)
+    # window.mainloop()
+
+    def test_click(btn:Action_button):
+        print("yo:", btn.width)
+        print(btn.command)
+        btn.command = test_click2
+    
+
+    def test_click2(btn:Action_button):
+        print("yo2:", btn.height)
+        print(btn.command)
+    
+
+    window2 = tk.Tk()
+    window2.geometry("200x200")
+
+    # bt = Button(window2, "lol", 15, 12, test_click)
+    # print(bt.width)
+    # bt.width = 15
+    # print(bt.width)
+    # print(Button().configure("command"))
+
+
+
+    row_frame = tk.Frame(window2)
+    row_frame.pack(side="top")
+    btn = Action_button(window2, "hey", 4646, command=test_click)
+    btn.pack(side="left")
+
+    window2.mainloop()
