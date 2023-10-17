@@ -6,7 +6,7 @@ import base_classes as bc
 
 class Button(tk.Button, bc.BaseWidget):
     """
-    Proxy class for `tkinter.Button`.
+    Facade class for `tkinter.Button`.
     """
     #TO IMPLEMENT:  activebackground, activeforeground, background, bitmap, borderwidth, cursor, disabledforeground, font, foreground, highlightbackground, highlightcolor
     #               highlightthickness, image, justify, padx, pady, relief, repeatdelay, repeatinterval, takefocus, textvariable, underline, wraplength, compound, default

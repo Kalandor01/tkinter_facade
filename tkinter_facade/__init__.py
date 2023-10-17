@@ -1,5 +1,5 @@
 """
-This module provides proxies for classes and methods in tkinter.
+This module provides a facade for classes and methods in tkinter.
 """
 __version__ = "0.2.1"
 
@@ -11,9 +11,9 @@ if __name__ == "__main__":
     from base_classes import Misc, BaseWidget, Widget, Tk
     from button import Button, Action_button
 else:
-    from tkinter_proxy.utils import get_children_recursive
-    from tkinter_proxy.base_classes import Misc, BaseWidget, Widget, Tk
-    from tkinter_proxy.button import Button, Action_button
+    from tkinter_facade.utils import get_children_recursive
+    from tkinter_facade.base_classes import Misc, BaseWidget, Widget, Tk
+    from tkinter_facade.button import Button, Action_button
 
 
 if __name__ == "__main__":

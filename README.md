@@ -1,1 +1,1 @@
-This module provides proxies for classes and methods in tkinter.
+This module provides a facade for classes and methods in tkinter.
